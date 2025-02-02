@@ -1,5 +1,7 @@
-def reverse(s):
-    return s[::-1]
+from itertools import permutations
 
-s = input()
-print(reverse(s))
+def print_permutations(s):
+    for perm in permutations(s):
+        print(''.join(perm))
+
+print_permutations(input("Enter: "))
