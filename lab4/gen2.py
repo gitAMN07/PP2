@@ -3,4 +3,4 @@ def even_generator(n):
         yield num
 
 n = int(input("N: "))
-print("Even numbers:", ", ".join(map(str, even_generator(n))))
+print("Een numbers:", ", ".join(map(str, even_generator(n))))
