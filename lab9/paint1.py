@@ -93,7 +93,7 @@ while True:
                         (mid_x, y2), 
                         (x1, mid_y) 
                     ], 2)
-
+                    
             drawing = False
 
         elif event.type == pygame.MOUSEMOTION:
