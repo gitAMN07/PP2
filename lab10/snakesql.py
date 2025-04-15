@@ -111,8 +111,6 @@ username = input("Enter your username: ")
 user_id, level, score = get_or_create_user(username)
 snake = Snake()
 food = Food(snake)
-score = 0
-level = 1
 speed = FPS
 food_to_next_level = 4
 running = True
@@ -163,6 +161,17 @@ while running:
     screen.blit(weight_text, (WIDTH - 120, 10))
     pygame.display.flip()
     clock.tick(speed)
+def save_progress(user_id, score, level):
+    cur.execute(
+        "INSERT INTO user_score (user_id, score, level, updated_at) VALUES (%s, %s, %s, %s);",
+        (user_id, score, level, datetime.now())
+    )
+    conn.commit()
+    print(f"[DB] Saved: user_id={user_id}, score={score}, level={level}")
+
+print("Final progress saved.")
+cur.execute("SELECT u.username, s.score, s.level FROM users u JOIN user_score s ON u.id = s.user_id ORDER BY s.updated_at DESC LIMIT 1;")
+print("[Latest in DB]:", cur.fetchone())
 cur.close()
 conn.close()
 pygame.quit()
