@@ -92,7 +92,10 @@ while True:
                         (x2, mid_y), 
                         (mid_x, y2), 
                         (x1, mid_y) 
-                    ], 2)                    
+                    ], 2)             
+                    #line 
+                elif mode == 'line':
+                    pygame.draw.line(screen, current_color, (x1, y1), (x2, y2), 2) 
             drawing = False
 
         elif event.type == pygame.MOUSEMOTION:
@@ -118,6 +121,8 @@ while True:
                 mode = 'rhombus'
             elif event.key == pygame.K_q:
                 mode = 'equilateral_triangle'
+            elif event.key == pygame.K_l:
+                mode = 'line'
             elif event.key == pygame.K_1:
                 current_color = colors[0]
             elif event.key == pygame.K_2:

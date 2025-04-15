@@ -104,10 +104,13 @@ while running:
             ENEMY_SPEED += 1
     if pygame.sprite.spritecollideany(player, enemy_sprites):
         crash_sound.play()
-        time.sleep(1)
-        screen.fill("red")
-        center_rect = game_over.get_rect(center=(WIDTH // 2, HEIGHT // 2))
-        screen.blit(game_over, center_rect)
+        coins_collected -= coin.weight
+        coin.reset_position()
+        if coins_collected < 0:
+            time.sleep(1)
+            screen.fill("red")
+            center_rect = game_over.get_rect(center=(WIDTH // 2, HEIGHT // 2))
+            screen.blit(game_over, center_rect)
         pygame.display.flip()
         time.sleep(2)
         break
